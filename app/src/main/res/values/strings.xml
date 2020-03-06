@@ -10,4 +10,7 @@
     <string name="pressure_label">Your Pressure</string>
     <string name="date_label">Date</string>
     <string name="weather_label">Weather</string>
+    <string name="score_label">Your Score</string>
+
+    <string name="number_zero">0</string>
 </resources>
