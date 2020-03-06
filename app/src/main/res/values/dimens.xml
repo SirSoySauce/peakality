@@ -4,4 +4,6 @@
     <dimen name="medium_padding">16dp</dimen>
     <dimen name="larger_padding">24dp</dimen>
     <dimen name="main_font_size">18sp</dimen>
+    <dimen name="larger_font_size">24sp</dimen>
+    <dimen name="large_font_size">48sp</dimen>
 </resources>
