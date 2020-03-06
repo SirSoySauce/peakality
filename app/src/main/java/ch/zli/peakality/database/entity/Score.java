@@ -3,6 +3,9 @@ package ch.zli.peakality.database.entity;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
+import lombok.Data;
+
+@Data
 @Entity
 public class Score {
 
@@ -22,9 +25,4 @@ public class Score {
     public double windSpeed;
 
     public double airPressure;
-
-    public Score(int scoreId) {
-        this.scoreId = scoreId;
-    }
-
 }
