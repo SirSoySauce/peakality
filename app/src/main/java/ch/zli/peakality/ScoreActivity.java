@@ -10,11 +10,15 @@ import ch.zli.peakality.database.entity.Score;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import java.text.DecimalFormat;
+
 public class ScoreActivity extends Activity {
 
     private Score score;
 
     public static final String SCORE_EXTRA_NAME = "score_extra";
+
+    private static DecimalFormat decimalFormat = new DecimalFormat("#.####");
 
     FloatingActionButton shareScoreButton;
 
@@ -67,5 +71,7 @@ public class ScoreActivity extends Activity {
 
     private void updateMeasuredValues(Score score) {
         pressureView.setText(getString(R.string.pressure_value, score.getAirPressure()));
+        longitudeView.setText(getString(R.string.longitude_value, decimalFormat.format(score.longitude)));
+        latitudeView.setText(getString(R.string.latitude_label, decimalFormat.format(score.latitude)));
     }
 }

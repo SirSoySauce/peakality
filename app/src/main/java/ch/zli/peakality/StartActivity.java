@@ -68,6 +68,7 @@ public class StartActivity extends Activity {
     @Override
     protected void onResume() {
         super.onResume();
+        fusedLocationClient.getLastLocation().addOnSuccessListener(locationOnSuccessListener());
         sensorManager.registerListener(sensorEventListener, pressureSensor, SensorManager.SENSOR_DELAY_NORMAL);
     }
 
