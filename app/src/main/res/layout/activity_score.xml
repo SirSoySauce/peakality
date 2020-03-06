@@ -2,7 +2,6 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -39,7 +38,16 @@
                 android:id="@+id/tvPositionLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:paddingEnd="@dimen/larger_padding"
+                android:paddingStart="0dp"
                 android:text="@string/position_label"
+                android:textColor="@color/primaryFontColor"
+                android:textSize="@dimen/main_font_size" />
+
+            <TextView
+                android:id="@+id/tvPositionValue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:textColor="@color/primaryFontColor"
                 android:textSize="@dimen/main_font_size" />
 
@@ -56,7 +64,17 @@
                 android:layout_width="wrap_content"
                 android:textSize="@dimen/main_font_size"
                 android:layout_height="wrap_content"
+                android:paddingEnd="@dimen/larger_padding"
+                android:paddingStart="0dp"
                 android:text="@string/altitude_label" />
+
+            <TextView
+                android:id="@+id/tvHeightValue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/primaryFontColor"
+                android:textSize="@dimen/main_font_size" />
+
         </TableRow>
 
         <TableRow
@@ -69,8 +87,18 @@
                 android:textColor="@color/primaryFontColor"
                 android:layout_width="wrap_content"
                 android:textSize="@dimen/main_font_size"
+                android:paddingEnd="@dimen/larger_padding"
+                android:paddingStart="0dp"
                 android:layout_height="wrap_content"
                 android:text="@string/temperature_label" />
+
+            <TextView
+                android:id="@+id/tvTemperatureValue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/primaryFontColor"
+                android:textSize="@dimen/main_font_size" />
+
         </TableRow>
 
         <TableRow
@@ -83,8 +111,18 @@
                 android:textColor="@color/primaryFontColor"
                 android:textSize="@dimen/main_font_size"
                 android:layout_width="wrap_content"
+                android:paddingEnd="@dimen/larger_padding"
+                android:paddingStart="0dp"
                 android:layout_height="wrap_content"
                 android:text="@string/pressure_label" />
+
+            <TextView
+                android:id="@+id/tvPressureValue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/primaryFontColor"
+                android:textSize="@dimen/main_font_size" />
+
         </TableRow>
 
         <TableRow
@@ -97,8 +135,18 @@
                 android:textColor="@color/primaryFontColor"
                 android:textSize="@dimen/main_font_size"
                 android:layout_width="wrap_content"
+                android:paddingEnd="@dimen/larger_padding"
+                android:paddingStart="0dp"
                 android:layout_height="wrap_content"
                 android:text="@string/date_label" />
+
+            <TextView
+                android:id="@+id/tvDateValue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/primaryFontColor"
+                android:textSize="@dimen/main_font_size" />
+
         </TableRow>
 
         <TableRow
@@ -110,9 +158,19 @@
                 android:id="@+id/tvWeatherLabel"
                 android:textColor="@color/primaryFontColor"
                 android:textSize="@dimen/main_font_size"
+                android:paddingEnd="@dimen/larger_padding"
+                android:paddingStart="0dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/weather_label" />
+
+            <TextView
+                android:id="@+id/tvWeatherValue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/primaryFontColor"
+                android:textSize="@dimen/main_font_size" />
+
         </TableRow>
     </TableLayout>
 
