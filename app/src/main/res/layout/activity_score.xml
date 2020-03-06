@@ -32,27 +32,88 @@
 
         <TableRow
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:paddingBottom="@dimen/table_row_spacing">
 
             <TextView
                 android:id="@+id/tvPositionLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="TextView" />
+                android:text="@string/position_label"
+                android:textColor="@color/primaryFontColor"
+                android:textSize="@dimen/main_font_size" />
 
         </TableRow>
 
         <TableRow
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:paddingBottom="@dimen/table_row_spacing">
+
+            <TextView
+                android:id="@+id/tvHeightLabel"
+                android:textColor="@color/primaryFontColor"
+                android:layout_width="wrap_content"
+                android:textSize="@dimen/main_font_size"
+                android:layout_height="wrap_content"
+                android:text="@string/altitude_label" />
+        </TableRow>
 
         <TableRow
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:paddingBottom="@dimen/table_row_spacing" >
+
+            <TextView
+                android:id="@+id/tvTemperatureLabel"
+                android:textColor="@color/primaryFontColor"
+                android:layout_width="wrap_content"
+                android:textSize="@dimen/main_font_size"
+                android:layout_height="wrap_content"
+                android:text="@string/temperature_label" />
+        </TableRow>
 
         <TableRow
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:paddingBottom="@dimen/table_row_spacing" >
+
+            <TextView
+                android:id="@+id/tvPressureLabel"
+                android:textColor="@color/primaryFontColor"
+                android:textSize="@dimen/main_font_size"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/pressure_label" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingBottom="@dimen/table_row_spacing" >
+
+            <TextView
+                android:id="@+id/tvDateLabel"
+                android:textColor="@color/primaryFontColor"
+                android:textSize="@dimen/main_font_size"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/date_label" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingBottom="@dimen/table_row_spacing" >
+
+            <TextView
+                android:id="@+id/tvWeatherLabel"
+                android:textColor="@color/primaryFontColor"
+                android:textSize="@dimen/main_font_size"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/weather_label" />
+        </TableRow>
     </TableLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
