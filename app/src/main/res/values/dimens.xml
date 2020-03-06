@@ -1,5 +1,7 @@
 <resources>
     <dimen name="content_margin">32dp</dimen>
-    <dimen name="main_font_size">18sp</dimen>
     <dimen name="table_row_spacing">8dp</dimen>
+    <dimen name="medium_padding">16dp</dimen>
+    <dimen name="larger_padding">24dp</dimen>
+    <dimen name="main_font_size">18sp</dimen>
 </resources>
