@@ -18,7 +18,7 @@ public class ScoreActivity extends Activity {
 
     public static final String SCORE_EXTRA_NAME = "score_extra";
 
-    private static DecimalFormat decimalFormat = new DecimalFormat("###.####");
+    private static DecimalFormat decimalFormat = new DecimalFormat("#.####");
 
     FloatingActionButton shareScoreButton;
 
