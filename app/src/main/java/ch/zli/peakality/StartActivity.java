@@ -35,7 +35,6 @@ public class StartActivity extends Activity {
     private float pressure;
     private Location location;
     private static final int REQUEST_PERMISSIONS_REQUEST_CODE = 9556165;
-    private static final String TAG = StartActivity.class.getSimpleName();
 
 
     @Override
