@@ -6,9 +6,15 @@ import android.os.Bundle;
 import android.text.Html;
 import android.view.View;
 
+import ch.zli.peakality.database.entity.Score;
+
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class ScoreActivity extends Activity {
+
+    private Score score;
+
+    public static final String SCORE_EXTRA_NAME = "score_extra";
 
     FloatingActionButton shareScoreButton;
 
@@ -16,6 +22,8 @@ public class ScoreActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_score);
+
+        score = (Score) getIntent().getSerializableExtra(SCORE_EXTRA_NAME);
         shareScoreButton = findViewById(R.id.fabShareScore);
 
         shareScoreButton.setOnClickListener(new View.OnClickListener() {
