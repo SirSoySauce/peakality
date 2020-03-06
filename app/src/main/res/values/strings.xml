@@ -16,5 +16,6 @@
     
     <string name="pressure_value">%1$f hp</string>
     <string name="longitude_value">Long %1$s</string>
-    <string name="latitude_label">Lat %1$s</string>
+    <string name="latitude_value">Lat %1$s</string>
+    <string name="altitude_value">%1$s m</string>
 </resources>
