@@ -20,11 +20,11 @@ public class Score implements Serializable {
     @PrimaryKey(autoGenerate = true)
     private int scoreId;
 
-    public String longitude;
+    public double longitude;
 
-    public String latitude;
+    public double latitude;
 
-    public String altitude;
+    public double altitude;
 
     public double temperature;
 
