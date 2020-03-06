@@ -13,4 +13,6 @@
     <string name="score_label">Your Score</string>
 
     <string name="number_zero">0</string>
+    
+    <string name="pressure_value">%1$f hp</string>
 </resources>
