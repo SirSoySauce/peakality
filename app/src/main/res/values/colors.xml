@@ -5,4 +5,6 @@
     <color name="colorPrimary">#96be8c</color>
     <color name="colorPrimaryLighter">#aceca1</color>
     <color name="colorPrimaryLight">#c9f2c7</color>
+
+    <color name="primaryFontColor">#000000</color>
 </resources>
