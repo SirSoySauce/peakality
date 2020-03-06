@@ -79,6 +79,7 @@ public class StartActivity extends Activity {
                 .airPressure(pressure)
                 .latitude(location.getLatitude())
                 .longitude(location.getLongitude())
+                .altitude(location.getAltitude())
                 .build();
     }
 

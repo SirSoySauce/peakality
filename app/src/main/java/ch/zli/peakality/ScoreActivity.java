@@ -72,6 +72,7 @@ public class ScoreActivity extends Activity {
     private void updateMeasuredValues(Score score) {
         pressureView.setText(getString(R.string.pressure_value, score.getAirPressure()));
         longitudeView.setText(getString(R.string.longitude_value, decimalFormat.format(score.longitude)));
-        latitudeView.setText(getString(R.string.latitude_label, decimalFormat.format(score.latitude)));
+        latitudeView.setText(getString(R.string.latitude_value, decimalFormat.format(score.latitude)));
+        altitudeView.setText(getString(R.string.altitude_value, decimalFormat.format(score.altitude)));
     }
 }
