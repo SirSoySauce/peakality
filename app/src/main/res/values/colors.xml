@@ -6,5 +6,7 @@
     <color name="colorPrimaryLighter">#aceca1</color>
     <color name="colorPrimaryLight">#c9f2c7</color>
 
+    <color name="light_grey">#c4c4c4</color>
+
     <color name="primaryFontColor">#000000</color>
 </resources>
