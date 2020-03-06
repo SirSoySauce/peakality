@@ -18,7 +18,9 @@ public class ScoreActivity extends Activity {
 
     FloatingActionButton shareScoreButton;
 
-    TextView positionView;
+    TextView latitudeView;
+
+    TextView longitudeView;
 
     TextView temperatureView;
 
@@ -30,13 +32,25 @@ public class ScoreActivity extends Activity {
 
     TextView weatherView;
 
+    TextView scoreView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_score);
 
         score = (Score) getIntent().getSerializableExtra(SCORE_EXTRA_NAME);
+
+        // Get elements from resource.
         shareScoreButton = findViewById(R.id.fabShareScore);
+        latitudeView = findViewById(R.id.tvLatitudeValue);
+        longitudeView = findViewById(R.id.tvLongitudeValue);
+        temperatureView = findViewById(R.id.tvTemperatureValue);
+        pressureView = findViewById(R.id.tvPressureValue);
+        altitudeView = findViewById(R.id.tvAltitudeValue);
+        dateView = findViewById(R.id.tvDateValue);
+        weatherView = findViewById(R.id.tvWeatherValue);
+        scoreView = findViewById(R.id.tvScoreValue);
 
         shareScoreButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -48,9 +62,10 @@ public class ScoreActivity extends Activity {
                 startActivity(Intent.createChooser(sharingIntent, "Share using"));
             }
         });
+        updateMeasuredValues(score);
     }
 
     private void updateMeasuredValues(Score score) {
-
+        pressureView.setText(getString(R.string.pressure_value, score.getAirPressure()));
     }
 }

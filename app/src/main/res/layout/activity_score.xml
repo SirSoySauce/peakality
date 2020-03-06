@@ -92,7 +92,7 @@
                 android:textSize="@dimen/main_font_size" />
 
             <TextView
-                android:id="@+id/tvHeightValue"
+                android:id="@+id/tvAltitudeValue"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/data_not_available"
