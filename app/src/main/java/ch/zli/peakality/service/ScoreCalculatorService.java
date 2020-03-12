@@ -1,13 +1,34 @@
 package ch.zli.peakality.service;
 
-import ch.zli.peakality.database.entity.Score;
+import java.util.HashMap;
+import java.util.Map;
+
 import ch.zli.peakality.domain.bo.ScoreBO;
 
-public class ScoreCalculator {
+public class ScoreCalculatorService {
     // Arrays containing the max, the norm and the min value, in that order.
     private static final int[] TEMPERATURE_VALUES = {40, 18, -20};
     private static final int[] ALTITUDE_VALES = {3000, 400, 0};
     private static final int[] AIR_PRESSURE = {1100, 900, 700};
+
+    private final HashMap<String, Integer> weatherValueMap;
+
+    public ScoreCalculatorService() {
+        weatherValueMap = initializeWeatherMap();
+    }
+
+    public HashMap<String, Integer> initializeWeatherMap() {
+        HashMap<String, Integer> hashMap = new HashMap<>();
+        hashMap.put("^2\\d\\d$", 800); // Thunderstorm
+        hashMap.put("^3\\d\\d$", 400); // Drizzle
+        hashMap.put("^5\\d\\d$", 500); // Rain
+        hashMap.put("^6\\d\\d$", 600); // Snow
+        hashMap.put("^800$", 200); // Clear Sky
+        hashMap.put("^80[1234]$", 300); // Cloudy Sky
+        hashMap.put("^7\\d\\d$", 650); // Atmosphere
+        return hashMap;
+    }
+
 
     /**
      * Calculates the score.
@@ -23,6 +44,7 @@ public class ScoreCalculator {
         scoreValue += calculateSingleScoreValue(score.getAltitude(), ALTITUDE_VALES);
         scoreValue += calculateSingleScoreValue(score.getTemperature(), TEMPERATURE_VALUES);
         scoreValue += calculateSingleScoreValue(score.getAirPressure(), AIR_PRESSURE);
+        scoreValue += calculateWeatherScoreValue(Integer.toString(score.getWeatherId()));
         return scoreValue;
     }
 
@@ -36,7 +58,7 @@ public class ScoreCalculator {
      * @return
      *  The calculated score.
      */
-    private int calculateSingleScoreValue(double actualValue, int[] referenceValues) {
+    public int calculateSingleScoreValue(double actualValue, int[] referenceValues) {
         double score;
         double maxValue = referenceValues[0];
         double normValue = referenceValues[1];
@@ -48,5 +70,14 @@ public class ScoreCalculator {
             score = (normValue - actualValue) / (normValue - minValue);
         }
         return (int)(score * 1000);
+    }
+
+    public int calculateWeatherScoreValue(String weatherId) {
+        for (Map.Entry<String, Integer> entry : weatherValueMap.entrySet()) {
+            if(weatherId.matches(entry.getKey())) {
+                return entry.getValue();
+            }
+        }
+        return 0;
     }
 }

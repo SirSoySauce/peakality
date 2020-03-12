@@ -34,7 +34,6 @@ import ch.zli.peakality.database.entity.Score;
 import ch.zli.peakality.domain.bo.ScoreBO;
 import ch.zli.peakality.service.DatabaseService;
 import ch.zli.peakality.service.OpenWeatherMapService;
-import io.reactivex.Scheduler;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.schedulers.Schedulers;
 
@@ -139,6 +138,7 @@ public class StartActivity extends Activity {
                 .windSpeed(currentWeather.getWindData().getSpeed())
                 .temperature(currentWeather.getMainData().getTemp())
                 .weather(currentWeather.getWeatherList().get(0).getMainInfo())
+                .weatherId(currentWeather.getWeatherList().get(0).getConditionId())
                 .build();
     }
 

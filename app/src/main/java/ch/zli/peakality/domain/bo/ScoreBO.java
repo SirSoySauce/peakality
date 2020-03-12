@@ -1,8 +1,5 @@
 package ch.zli.peakality.domain.bo;
 
-import androidx.room.Entity;
-import androidx.room.PrimaryKey;
-
 import java.io.Serializable;
 import java.util.Date;
 
@@ -26,6 +23,8 @@ public class ScoreBO implements Serializable {
     private double temperature;
 
     private String weather;
+
+    private int weatherId;
 
     private double windSpeed;
 
