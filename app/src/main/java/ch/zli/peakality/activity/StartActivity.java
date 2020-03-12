@@ -11,6 +11,7 @@ import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.location.Location;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
@@ -21,8 +22,14 @@ import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.snackbar.Snackbar;
 
+import net.aksingh.owmjapis.api.APIException;
+import net.aksingh.owmjapis.model.CurrentWeather;
+
 import ch.zli.peakality.R;
 import ch.zli.peakality.database.entity.Score;
+import ch.zli.peakality.service.OpenWeatherMapService;
+import io.reactivex.disposables.CompositeDisposable;
+import io.reactivex.schedulers.Schedulers;
 
 import static ch.zli.peakality.activity.ScoreActivity.SCORE_EXTRA_NAME;
 
@@ -31,13 +38,17 @@ public class StartActivity extends Activity {
     // Button used to share the score.
     Button generateScoreButton;
     private FusedLocationProviderClient fusedLocationClient;
+    private OpenWeatherMapService openWeatherMapService = new OpenWeatherMapService();
     private SensorManager sensorManager;
     private Sensor pressureSensor;
     private SensorEventListener sensorEventListener;
     private float pressure;
     private Location location;
+    private CurrentWeather currentWeather;
     // Set a code to identify the app.
     private static final int REQUEST_PERMISSIONS_REQUEST_CODE = 9556165;
+
+    private CompositeDisposable compositeDisposable = new CompositeDisposable();
 
 
     @Override
@@ -84,13 +95,17 @@ public class StartActivity extends Activity {
      *  Score object.
      */
     private Score buildScore() {
-        fusedLocationClient.getLastLocation().addOnSuccessListener(locationOnSuccessListener());
+        fusedLocationClient.getLastLocation()
+                .addOnSuccessListener(locationOnSuccessListener());
         // TODO: Fully build Score object
         return Score.builder()
                 .airPressure(pressure)
                 .latitude(location.getLatitude())
                 .longitude(location.getLongitude())
                 .altitude(location.getAltitude())
+                .windSpeed(currentWeather.getWindData().getSpeed())
+                .temperature(currentWeather.getMainData().getTemp())
+                .weather(currentWeather.getWeatherList().get(0).getMainInfo())
                 .build();
     }
 
@@ -137,12 +152,16 @@ public class StartActivity extends Activity {
      *  The on success listener to set device location.
      */
     private OnSuccessListener<Location> locationOnSuccessListener() {
-        return new OnSuccessListener<Location>() {
-            @Override
-            public void onSuccess(Location deviceLocation) {
-                location = deviceLocation;
-                if (location != null) {
-                    // TODO: Handle null location
+        return deviceLocation -> {
+            location = deviceLocation;
+            if (location != null && currentWeather == null) {
+                try {
+                    compositeDisposable.add(openWeatherMapService.getCurrentWeather(location.getLatitude(), location.getLongitude())
+                            .subscribeOn(Schedulers.io())
+                            .subscribe(weatherData -> currentWeather = weatherData, error -> showSnackbar(R.string.error_weather_api)));
+                } catch (APIException e) {
+                    Log.e(this.getClass().getSimpleName(), e.getMessage());
+                    showSnackbar(R.string.error_weather_api);
                 }
             }
         };
@@ -175,6 +194,10 @@ public class StartActivity extends Activity {
                 getString(mainTextStringId),
                 Snackbar.LENGTH_INDEFINITE)
                 .setAction(getString(android.R.string.ok), listener).show();
+    }
+
+    private void showSnackbar(final int mainTextStringId) {
+        showSnackbar(mainTextStringId, null);
     }
 
     // Request the permission to access the location.
