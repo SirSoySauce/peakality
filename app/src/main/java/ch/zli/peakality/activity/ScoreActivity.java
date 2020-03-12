@@ -13,6 +13,9 @@ import ch.zli.peakality.service.ScoreCalculator;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 
 public class ScoreActivity extends Activity {
 
@@ -44,6 +47,8 @@ public class ScoreActivity extends Activity {
 
     TextView scoreView;
 
+    TextView windSpeedView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,6 +66,7 @@ public class ScoreActivity extends Activity {
         dateView = findViewById(R.id.tvDateValue);
         weatherView = findViewById(R.id.tvWeatherValue);
         scoreView = findViewById(R.id.tvScoreValue);
+        windSpeedView = findViewById(R.id.tvWindSpeedValue);
 
         shareScoreButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -87,10 +93,16 @@ public class ScoreActivity extends Activity {
     }
 
     private void updateMeasuredValues() {
+        String currentDate = SimpleDateFormat.getDateInstance().format(new Date());
+
         pressureView.setText(getString(R.string.pressure_value, score.getAirPressure()));
-        longitudeView.setText(getString(R.string.longitude_value, decimalFormat.format(score.longitude)));
-        latitudeView.setText(getString(R.string.latitude_value, decimalFormat.format(score.latitude)));
-        altitudeView.setText(getString(R.string.altitude_value, decimalFormat.format(score.altitude)));
+        longitudeView.setText(getString(R.string.longitude_value, decimalFormat.format(score.getLongitude())));
+        latitudeView.setText(getString(R.string.latitude_value, decimalFormat.format(score.getLatitude())));
+        altitudeView.setText(getString(R.string.altitude_value, decimalFormat.format(score.getAltitude())));
+        temperatureView.setText(getString(R.string.temperature_value, decimalFormat.format(score.getTemperature())));
+        weatherView.setText(score.getWeather());
+        windSpeedView.setText(getString(R.string.wind_speed_value, decimalFormat.format(score.getWindSpeed())));
+        dateView.setText(currentDate);
         recalculateScore();
     }
 }

@@ -7,7 +7,6 @@ public class ScoreCalculator {
     private static final int[] TEMPERATURE_VALUES = {40, 18, -20};
     private static final int[] ALTITUDE_VALES = {3000, 400, 0};
     private static final int[] AIR_PRESSURE = {1100, 900, 700};
-    private static final int[] WIND_SPEED= {120, 5, 0};
 
     public int calculateScore(Score score) {
         int scoreValue = 0;
