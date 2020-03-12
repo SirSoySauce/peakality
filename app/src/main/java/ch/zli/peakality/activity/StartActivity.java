@@ -1,4 +1,4 @@
-package ch.zli.peakality;
+package ch.zli.peakality.activity;
 
 import android.Manifest;
 import android.app.Activity;
@@ -21,9 +21,10 @@ import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.snackbar.Snackbar;
 
+import ch.zli.peakality.R;
 import ch.zli.peakality.database.entity.Score;
 
-import static ch.zli.peakality.ScoreActivity.SCORE_EXTRA_NAME;
+import static ch.zli.peakality.activity.ScoreActivity.SCORE_EXTRA_NAME;
 
 public class StartActivity extends Activity {
 
@@ -131,7 +132,7 @@ public class StartActivity extends Activity {
 
     /**
      * Shows a {@link Snackbar}.
-     *  @param mainTextStringId The id for the string resource for the Snackbar text.
+     * @param mainTextStringId The id for the string resource for the Snackbar text.
      * @param listener         The listener associated with the Snackbar action.
      */
     private void showSnackbar(final int mainTextStringId,

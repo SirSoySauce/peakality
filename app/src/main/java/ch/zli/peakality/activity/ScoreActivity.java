@@ -1,4 +1,4 @@
-package ch.zli.peakality;
+package ch.zli.peakality.activity;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
+import ch.zli.peakality.R;
 import ch.zli.peakality.database.entity.Score;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
