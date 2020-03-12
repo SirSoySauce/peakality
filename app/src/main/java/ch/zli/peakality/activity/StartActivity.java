@@ -27,6 +27,7 @@ import net.aksingh.owmjapis.model.CurrentWeather;
 
 import ch.zli.peakality.R;
 import ch.zli.peakality.database.entity.Score;
+import ch.zli.peakality.domain.bo.ScoreBO;
 import ch.zli.peakality.service.OpenWeatherMapService;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.schedulers.Schedulers;
@@ -63,14 +64,11 @@ public class StartActivity extends Activity {
         }
 
         if (checkPermissions()) {
-            generateScoreButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Score score = buildScore();
-                    Intent intent = new Intent(StartActivity.this, ScoreActivity.class);
-                    intent.putExtra(SCORE_EXTRA_NAME, score);
-                    startActivity(intent);
-                }
+            generateScoreButton.setOnClickListener(v -> {
+                ScoreBO score = buildScore();
+                Intent intent = new Intent(StartActivity.this, ScoreActivity.class);
+                intent.putExtra(SCORE_EXTRA_NAME, score);
+                startActivity(intent);
             });
         } else {
             generateScoreButton.setEnabled(false);
@@ -94,11 +92,11 @@ public class StartActivity extends Activity {
      * @return
      *  Score object.
      */
-    private Score buildScore() {
+    private ScoreBO buildScore() {
         fusedLocationClient.getLastLocation()
                 .addOnSuccessListener(locationOnSuccessListener());
         // TODO: Fully build Score object
-        return Score.builder()
+        return ScoreBO.builder()
                 .airPressure(pressure)
                 .latitude(location.getLatitude())
                 .longitude(location.getLongitude())
