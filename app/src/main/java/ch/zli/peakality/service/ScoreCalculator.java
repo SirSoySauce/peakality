@@ -1,6 +1,7 @@
 package ch.zli.peakality.service;
 
 import ch.zli.peakality.database.entity.Score;
+import ch.zli.peakality.domain.bo.ScoreBO;
 
 public class ScoreCalculator {
     // Arrays containing the max, the norm and the min value, in that order.
@@ -16,7 +17,7 @@ public class ScoreCalculator {
      * @return
      *  The calculated score.
      */
-    public int calculateScore(Score score) {
+    public int calculateScore(ScoreBO score) {
         int scoreValue = 0;
         // Add together all the single scores.
         scoreValue += calculateSingleScoreValue(score.getAltitude(), ALTITUDE_VALES);
