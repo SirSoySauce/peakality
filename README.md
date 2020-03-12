@@ -2,12 +2,14 @@
 
 Always wanted to prove you're the most extreme person? Now you can!
 
+## Getting Started
+
 ### Prerequisites
 
 - Android Studio
 - An Android device (min. API level 24) with a pressure sensor.
 
-### Prerequisites
+### Installing
 
 1. Open the project in Android Studio.
 2. Wait until Android Studio has installed all your dependencies.
@@ -20,7 +22,6 @@ Always wanted to prove you're the most extreme person? Now you can!
 * [Android](https://www.android.com/) - Mobile Framework
 * [Room](https://developer.android.com/topic/libraries/architecture/room) - Persistence Library
 * [OpenWeatherMap](https://openweathermap.org/) - Weather API
-
 
 ## Authors
 
