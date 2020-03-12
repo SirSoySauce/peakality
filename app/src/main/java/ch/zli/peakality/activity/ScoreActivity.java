@@ -14,13 +14,14 @@ import java.util.Date;
 
 import ch.zli.peakality.R;
 import ch.zli.peakality.database.entity.Score;
+import ch.zli.peakality.domain.bo.ScoreBO;
 import ch.zli.peakality.service.ScoreCalculator;
 
 public class ScoreActivity extends Activity {
 
     private ScoreCalculator scoreCalculator = new ScoreCalculator();
 
-    private Score score;
+    private ScoreBO score;
 
     private int calculatedScore = 0;
 
@@ -45,7 +46,7 @@ public class ScoreActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_score);
 
-        score = (Score) getIntent().getSerializableExtra(SCORE_EXTRA_NAME);
+        score = (ScoreBO) getIntent().getSerializableExtra(SCORE_EXTRA_NAME);
 
         // Get elements from resource.
         shareScoreButton = findViewById(R.id.fabShareScore);
@@ -59,15 +60,12 @@ public class ScoreActivity extends Activity {
         scoreView = findViewById(R.id.tvScoreValue);
         windSpeedView = findViewById(R.id.tvWindSpeedValue);
 
-        shareScoreButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent sharingIntent = new Intent(Intent.ACTION_SEND);
-                sharingIntent.setType("text/plain");
-                // @TODO: Set actual score.
-                sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, "My score is: " + calculatedScore);
-                startActivity(Intent.createChooser(sharingIntent, "Share using"));
-            }
+        shareScoreButton.setOnClickListener(v -> {
+            Intent sharingIntent = new Intent(Intent.ACTION_SEND);
+            sharingIntent.setType("text/plain");
+            // @TODO: Set actual score.
+            sharingIntent.putExtra(Intent.EXTRA_TEXT, "My score is: " + calculatedScore);
+            startActivity(Intent.createChooser(sharingIntent, "Share using"));
         });
         updateMeasuredValues();
     }

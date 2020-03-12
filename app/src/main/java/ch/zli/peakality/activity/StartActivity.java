@@ -16,6 +16,7 @@ import android.view.View;
 import android.widget.Button;
 
 import androidx.core.app.ActivityCompat;
+import androidx.room.Room;
 
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
@@ -25,9 +26,15 @@ import com.google.android.material.snackbar.Snackbar;
 import net.aksingh.owmjapis.api.APIException;
 import net.aksingh.owmjapis.model.CurrentWeather;
 
+import java.util.Date;
+
 import ch.zli.peakality.R;
+import ch.zli.peakality.database.AppDatabase;
 import ch.zli.peakality.database.entity.Score;
+import ch.zli.peakality.domain.bo.ScoreBO;
+import ch.zli.peakality.service.DatabaseService;
 import ch.zli.peakality.service.OpenWeatherMapService;
+import io.reactivex.Scheduler;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.schedulers.Schedulers;
 
@@ -39,6 +46,7 @@ public class StartActivity extends Activity {
     Button generateScoreButton;
     private FusedLocationProviderClient fusedLocationClient;
     private OpenWeatherMapService openWeatherMapService = new OpenWeatherMapService();
+    private DatabaseService databaseService;
     private SensorManager sensorManager;
     private Sensor pressureSensor;
     private SensorEventListener sensorEventListener;
@@ -56,6 +64,8 @@ public class StartActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start);
         generateScoreButton = findViewById(R.id.bGenerateScore);
+        databaseService = new DatabaseService(Room.databaseBuilder(getApplicationContext(),
+                AppDatabase.class, "peakalityDb").build());
 
         // Request the location permission if they aren't already set.
         if (!checkPermissions()) {
@@ -63,14 +73,12 @@ public class StartActivity extends Activity {
         }
 
         if (checkPermissions()) {
-            generateScoreButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Score score = buildScore();
-                    Intent intent = new Intent(StartActivity.this, ScoreActivity.class);
-                    intent.putExtra(SCORE_EXTRA_NAME, score);
-                    startActivity(intent);
-                }
+            generateScoreButton.setOnClickListener(v -> {
+                ScoreBO score = buildScore();
+                writeScoreToDatabase(score);
+                Intent intent = new Intent(StartActivity.this, ScoreActivity.class);
+                intent.putExtra(SCORE_EXTRA_NAME, score);
+                startActivity(intent);
             });
         } else {
             generateScoreButton.setEnabled(false);
@@ -89,16 +97,40 @@ public class StartActivity extends Activity {
     }
 
     /**
+     * Writes the scoreBO into the database.
+     *
+     * @param scoreBO object to be written into the database.
+     */
+    private void writeScoreToDatabase(ScoreBO scoreBO) {
+        // Map ScoreBO to score db entry object.
+        Score score = Score.builder()
+                .airPressure(scoreBO.getAirPressure())
+                .altitude(scoreBO.getAltitude())
+                .cityName(currentWeather.getCityName())
+                .date(new Date())
+                .latitude(scoreBO.getLatitude())
+                .longitude(scoreBO.getLongitude())
+                .temperature(scoreBO.getTemperature())
+                .weather(scoreBO.getWeather())
+                .windSpeed(scoreBO.getWindSpeed())
+                .build();
+
+        // Insert score entry on io thread in database.
+        databaseService.writeScoreToDatabase(score)
+                .subscribeOn(Schedulers.io())
+                .subscribe();
+    }
+
+    /**
      * Builds a score object.
      *
-     * @return
-     *  Score object.
+     * @return Score object.
      */
-    private Score buildScore() {
+    private ScoreBO buildScore() {
         fusedLocationClient.getLastLocation()
                 .addOnSuccessListener(locationOnSuccessListener());
         // TODO: Fully build Score object
-        return Score.builder()
+        return ScoreBO.builder()
                 .airPressure(pressure)
                 .latitude(location.getLatitude())
                 .longitude(location.getLongitude())
@@ -129,8 +161,7 @@ public class StartActivity extends Activity {
     /**
      * Sensor event listener.
      *
-     * @return
-     *  Event listener to handle events.
+     * @return Event listener to handle events.
      */
     private SensorEventListener pressureSensorEventListener() {
         return new SensorEventListener() {
@@ -148,8 +179,7 @@ public class StartActivity extends Activity {
     /**
      * On success listener.
      *
-     * @return
-     *  The on success listener to set device location.
+     * @return The on success listener to set device location.
      */
     private OnSuccessListener<Location> locationOnSuccessListener() {
         return deviceLocation -> {
@@ -170,8 +200,7 @@ public class StartActivity extends Activity {
     /**
      * Checks if the application has the necessary permissions.
      *
-     * @return
-     *  Indicates if the app has the necessary permissions.
+     * @return Indicates if the app has the necessary permissions.
      */
     private boolean checkPermissions() {
         int permissionState = ActivityCompat.checkSelfPermission(this,
@@ -182,10 +211,8 @@ public class StartActivity extends Activity {
     /**
      * Shows a snack bar to notify the user that the application is missing the location permission.
      *
-     * @param mainTextStringId
-     *  The id for the string resource for the Snackbar text.
-     * @param listener
-     *  The listener associated with the Snackbar action.
+     * @param mainTextStringId The id for the string resource for the Snackbar text.
+     * @param listener         The listener associated with the Snackbar action.
      */
     private void showSnackbar(final int mainTextStringId, View.OnClickListener listener) {
         // Create a snack bar.

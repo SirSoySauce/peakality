@@ -1,10 +1,9 @@
-package ch.zli.peakality.database.entity;
+package ch.zli.peakality.domain.bo;
 
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
 import java.io.Serializable;
-import java.util.Date;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -12,22 +11,16 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@Entity
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class Score {
-
-    @PrimaryKey(autoGenerate = true)
-    private int scoreId;
+public class ScoreBO implements Serializable {
 
     private double longitude;
 
     private double latitude;
 
     private double altitude;
-
-    private String cityName;
 
     private double temperature;
 
@@ -36,7 +29,5 @@ public class Score {
     private double windSpeed;
 
     private float airPressure;
-
-    private Date date;
 
 }

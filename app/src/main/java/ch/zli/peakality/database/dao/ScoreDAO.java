@@ -19,5 +19,8 @@ public interface ScoreDAO {
     @Insert
     Completable insertAll(Score... scores);
 
+    @Query("SELECT * FROM score WHERE scoreId = :scoreId")
+    Single<Score> getScoreById(int scoreId);
+
 
 }
