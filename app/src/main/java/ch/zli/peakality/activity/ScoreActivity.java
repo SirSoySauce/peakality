@@ -6,16 +6,15 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
-import ch.zli.peakality.R;
-import ch.zli.peakality.database.entity.Score;
-import ch.zli.peakality.service.ScoreCalculator;
-
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
+
+import ch.zli.peakality.R;
+import ch.zli.peakality.database.entity.Score;
+import ch.zli.peakality.service.ScoreCalculator;
 
 public class ScoreActivity extends Activity {
 
