@@ -28,6 +28,7 @@ import static ch.zli.peakality.activity.ScoreActivity.SCORE_EXTRA_NAME;
 
 public class StartActivity extends Activity {
 
+    // Button used to share the score.
     Button generateScoreButton;
     private FusedLocationProviderClient fusedLocationClient;
     private SensorManager sensorManager;
@@ -35,6 +36,7 @@ public class StartActivity extends Activity {
     private SensorEventListener sensorEventListener;
     private float pressure;
     private Location location;
+    // Set a code to identify the app.
     private static final int REQUEST_PERMISSIONS_REQUEST_CODE = 9556165;
 
 
@@ -44,6 +46,7 @@ public class StartActivity extends Activity {
         setContentView(R.layout.activity_start);
         generateScoreButton = findViewById(R.id.bGenerateScore);
 
+        // Request the location permission if they aren't already set.
         if (!checkPermissions()) {
             requestPermissions();
         }
@@ -67,11 +70,19 @@ public class StartActivity extends Activity {
         // TODO: Handle case if mobile has no sensor
         sensorEventListener = pressureSensorEventListener();
 
+        // Check if the app is allowed to access the location.
         if (checkPermissions()) {
+            // Get the location client.
             fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
         }
     }
 
+    /**
+     * Builds a score object.
+     *
+     * @return
+     *  Score object.
+     */
     private Score buildScore() {
         fusedLocationClient.getLastLocation().addOnSuccessListener(locationOnSuccessListener());
         // TODO: Fully build Score object
@@ -95,10 +106,17 @@ public class StartActivity extends Activity {
     @Override
     protected void onPause() {
         super.onPause();
+        // Unregister the sensor event listener while the app is in the background in order
+        // to save battery.
         sensorManager.unregisterListener(sensorEventListener);
     }
 
-
+    /**
+     * Sensor event listener.
+     *
+     * @return
+     *  Event listener to handle events.
+     */
     private SensorEventListener pressureSensorEventListener() {
         return new SensorEventListener() {
             @Override
@@ -112,6 +130,12 @@ public class StartActivity extends Activity {
         };
     }
 
+    /**
+     * On success listener.
+     *
+     * @return
+     *  The on success listener to set device location.
+     */
     private OnSuccessListener<Location> locationOnSuccessListener() {
         return new OnSuccessListener<Location>() {
             @Override
@@ -124,6 +148,12 @@ public class StartActivity extends Activity {
         };
     }
 
+    /**
+     * Checks if the application has the necessary permissions.
+     *
+     * @return
+     *  Indicates if the app has the necessary permissions.
+     */
     private boolean checkPermissions() {
         int permissionState = ActivityCompat.checkSelfPermission(this,
                 Manifest.permission.ACCESS_FINE_LOCATION);
@@ -131,12 +161,15 @@ public class StartActivity extends Activity {
     }
 
     /**
-     * Shows a {@link Snackbar}.
-     * @param mainTextStringId The id for the string resource for the Snackbar text.
-     * @param listener         The listener associated with the Snackbar action.
+     * Shows a snack bar to notify the user that the application is missing the location permission.
+     *
+     * @param mainTextStringId
+     *  The id for the string resource for the Snackbar text.
+     * @param listener
+     *  The listener associated with the Snackbar action.
      */
-    private void showSnackbar(final int mainTextStringId,
-                              View.OnClickListener listener) {
+    private void showSnackbar(final int mainTextStringId, View.OnClickListener listener) {
+        // Create a snack bar.
         Snackbar.make(
                 findViewById(android.R.id.content),
                 getString(mainTextStringId),
@@ -144,6 +177,7 @@ public class StartActivity extends Activity {
                 .setAction(getString(android.R.string.ok), listener).show();
     }
 
+    // Request the permission to access the location.
     private void requestPermissions() {
         boolean shouldProvideRationale =
                 ActivityCompat.shouldShowRequestPermissionRationale(this,
