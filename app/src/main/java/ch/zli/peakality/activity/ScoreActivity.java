@@ -28,24 +28,16 @@ public class ScoreActivity extends Activity {
 
     private static DecimalFormat decimalFormat = new DecimalFormat("#.####");
 
+    // Get different gui elements.
     FloatingActionButton shareScoreButton;
-
     TextView latitudeView;
-
     TextView longitudeView;
-
     TextView temperatureView;
-
     TextView pressureView;
-
     TextView altitudeView;
-
     TextView dateView;
-
     TextView weatherView;
-
     TextView scoreView;
-
     TextView windSpeedView;
 
     @Override
@@ -83,16 +75,24 @@ public class ScoreActivity extends Activity {
     @Override
     protected void onResume() {
         super.onResume();
+        // Updated the values shown on screen.
         updateMeasuredValues();
     }
 
+    /**
+     * Recalculates the score.
+     */
     private void recalculateScore() {
         calculatedScore = scoreCalculator.calculateScore(score);
     }
 
+    /**
+     * Display the measured values.
+     */
     private void updateMeasuredValues() {
         String currentDate = SimpleDateFormat.getDateInstance().format(new Date());
 
+        // Display the values of the different measured values.
         pressureView.setText(getString(R.string.pressure_value, score.getAirPressure()));
         longitudeView.setText(getString(R.string.longitude_value, decimalFormat.format(score.getLongitude())));
         latitudeView.setText(getString(R.string.latitude_value, decimalFormat.format(score.getLatitude())));
@@ -101,6 +101,7 @@ public class ScoreActivity extends Activity {
         weatherView.setText(score.getWeather());
         windSpeedView.setText(getString(R.string.wind_speed_value, decimalFormat.format(score.getWindSpeed())));
         dateView.setText(currentDate);
+        // Recalculate to score value.
         recalculateScore();
         scoreView.setText(String.valueOf(calculatedScore));
     }
