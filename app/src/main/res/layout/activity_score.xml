@@ -164,19 +164,19 @@
             android:paddingBottom="@dimen/table_row_spacing">
 
             <TextView
-                android:id="@+id/tvDateLabel"
+                android:id="@+id/tvWeatherLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:orientation="vertical"
                 android:paddingStart="0dp"
                 android:paddingEnd="@dimen/larger_padding"
-                android:text="@string/date_label"
+                android:text="@string/weather_label"
                 android:textColor="@color/primaryFontColor"
                 android:textSize="@dimen/main_font_size" />
 
             <TextView
-                android:id="@+id/tvDateValue"
+                android:id="@+id/tvWeatherValue"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/data_not_available"
@@ -192,19 +192,47 @@
             android:paddingBottom="@dimen/table_row_spacing">
 
             <TextView
-                android:id="@+id/tvWeatherLabel"
+                android:id="@+id/tvWindSpeedLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:orientation="vertical"
                 android:paddingStart="0dp"
                 android:paddingEnd="@dimen/larger_padding"
-                android:text="@string/weather_label"
+                android:text="@string/wind_speed_label"
                 android:textColor="@color/primaryFontColor"
                 android:textSize="@dimen/main_font_size" />
 
             <TextView
-                android:id="@+id/tvWeatherValue"
+                android:id="@+id/tvWindSpeedValue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/data_not_available"
+                android:textColor="@color/primaryFontColor"
+                android:textSize="@dimen/main_font_size" />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingTop="@dimen/table_row_spacing"
+            android:paddingBottom="@dimen/table_row_spacing">
+
+            <TextView
+                android:id="@+id/tvDateLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:orientation="vertical"
+                android:paddingStart="0dp"
+                android:paddingEnd="@dimen/larger_padding"
+                android:text="@string/date_label"
+                android:textColor="@color/primaryFontColor"
+                android:textSize="@dimen/main_font_size" />
+
+            <TextView
+                android:id="@+id/tvDateValue"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/data_not_available"
