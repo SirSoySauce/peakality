@@ -89,7 +89,6 @@ public class ScoreActivity extends Activity {
 
     private void recalculateScore() {
         calculatedScore = scoreCalculator.calculateScore(score);
-        scoreView.setText(String.valueOf(calculatedScore));
     }
 
     private void updateMeasuredValues() {
@@ -104,5 +103,6 @@ public class ScoreActivity extends Activity {
         windSpeedView.setText(getString(R.string.wind_speed_value, decimalFormat.format(score.getWindSpeed())));
         dateView.setText(currentDate);
         recalculateScore();
+        scoreView.setText(String.valueOf(calculatedScore));
     }
 }
