@@ -14,7 +14,7 @@
     <string name="score_label">Your Score</string>
 
     <string name="number_zero">0</string>
-    
+
     <string name="pressure_value">%1$f hp</string>
     <string name="longitude_value">Long %1$s</string>
     <string name="latitude_value">Lat %1$s</string>
@@ -23,4 +23,6 @@
     <string name="wind_speed_value">%1$s m/s</string>
 
     <string name="permission_rationale">Location permission is needed for core functionality</string>
+
+    <string name="error_weather_api">Can\'t connect to weather API.</string>
 </resources>
