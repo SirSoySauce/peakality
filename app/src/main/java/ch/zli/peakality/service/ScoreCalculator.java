@@ -2,7 +2,7 @@ package ch.zli.peakality.service;
 
 import ch.zli.peakality.database.entity.Score;
 
-class ScoreCalculator {
+public class ScoreCalculator {
     // Arrays containing the max, the norm and the min value, in that order.
     private static final int[] TEMPERATURE_VALUES = {40, 18, -20};
     private static final int[] ALTITUDE_VALES = {3000, 400, 0};
