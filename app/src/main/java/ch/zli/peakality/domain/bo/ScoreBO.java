@@ -4,6 +4,7 @@ import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -29,5 +30,7 @@ public class ScoreBO implements Serializable {
     private double windSpeed;
 
     private float airPressure;
+
+    private Date date;
 
 }
