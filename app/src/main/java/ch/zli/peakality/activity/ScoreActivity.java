@@ -88,7 +88,7 @@ public class ScoreActivity extends Activity {
      * Display the measured values.
      */
     private void updateMeasuredValues() {
-        String currentDate = SimpleDateFormat.getDateInstance().format(new Date());
+        String currentDate = SimpleDateFormat.getDateInstance().format(score.getDate());
 
         // Display the values of the different measured values.
         pressureView.setText(getString(R.string.pressure_value, score.getAirPressure()));
