@@ -3,23 +3,20 @@ package ch.zli.peakality.activity;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.TextView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
-import java.util.Date;
 
 import ch.zli.peakality.R;
-import ch.zli.peakality.database.entity.Score;
 import ch.zli.peakality.domain.bo.ScoreBO;
-import ch.zli.peakality.service.ScoreCalculator;
+import ch.zli.peakality.service.ScoreCalculatorService;
 
 public class ScoreActivity extends Activity {
 
-    private ScoreCalculator scoreCalculator = new ScoreCalculator();
+    private ScoreCalculatorService scoreCalculatorService = new ScoreCalculatorService();
 
     private ScoreBO score;
 
@@ -81,7 +78,7 @@ public class ScoreActivity extends Activity {
      * Recalculates the score.
      */
     private void recalculateScore() {
-        calculatedScore = scoreCalculator.calculateScore(score);
+        calculatedScore = scoreCalculatorService.calculateScore(score);
     }
 
     /**

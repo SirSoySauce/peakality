@@ -10,7 +10,7 @@ import io.reactivex.Observable;
 
 public class OpenWeatherMapService {
 
-    private static final String API_KEY = "a6a2b91107c97e9756707648de1c54c2";
+    private static final String API_KEY = ""; // Insert your API key
     private final OWM owm;
 
     public OpenWeatherMapService() {
