@@ -4,6 +4,7 @@ import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -15,23 +16,27 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class Score implements Serializable {
+public class Score {
 
     @PrimaryKey(autoGenerate = true)
     private int scoreId;
 
-    public double longitude;
+    private double longitude;
 
-    public double latitude;
+    private double latitude;
 
-    public double altitude;
+    private double altitude;
 
-    public double temperature;
+    private String cityName;
 
-    public String weather;
+    private double temperature;
 
-    public double windSpeed;
+    private String weather;
 
-    public float airPressure;
+    private double windSpeed;
+
+    private float airPressure;
+
+    private Date date;
 
 }

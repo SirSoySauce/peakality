@@ -16,18 +16,18 @@ import lombok.NoArgsConstructor;
 @Builder
 public class ScoreBO implements Serializable {
 
-    public double longitude;
+    private double longitude;
 
-    public double latitude;
+    private double latitude;
 
-    public double altitude;
+    private double altitude;
 
-    public double temperature;
+    private double temperature;
 
-    public String weather;
+    private String weather;
 
-    public double windSpeed;
+    private double windSpeed;
 
-    public float airPressure;
+    private float airPressure;
 
 }
