@@ -3,17 +3,14 @@ package ch.zli.peakality.activity;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.TextView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
-import java.util.Date;
 
 import ch.zli.peakality.R;
-import ch.zli.peakality.database.entity.Score;
 import ch.zli.peakality.domain.bo.ScoreBO;
 import ch.zli.peakality.service.ScoreCalculator;
 

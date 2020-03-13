@@ -12,10 +12,12 @@
             android:id="@+id/tvScoreDate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/content_margin"
+            android:layout_marginStart="@dimen/medium_padding"
             android:layout_marginTop="@dimen/medium_padding"
             android:layout_marginEnd="@dimen/medium_padding"
-            android:layout_marginBottom="@dimen/medium_padding" />
+            android:layout_marginBottom="@dimen/medium_padding"
+            android:textColor="@color/primaryFontColor"
+            android:textSize="@dimen/main_font_size" />
 
         <TextView
             android:id="@+id/tvCity"
@@ -24,7 +26,9 @@
             android:layout_marginStart="@dimen/medium_padding"
             android:layout_marginTop="@dimen/medium_padding"
             android:layout_marginEnd="@dimen/medium_padding"
-            android:layout_marginBottom="@dimen/medium_padding" />
+            android:layout_marginBottom="@dimen/medium_padding"
+            android:textColor="@color/primaryFontColor"
+            android:textSize="@dimen/main_font_size" />
 
         <TextView
             android:id="@+id/tvScore"
@@ -33,7 +37,9 @@
             android:layout_marginStart="@dimen/medium_padding"
             android:layout_marginTop="@dimen/medium_padding"
             android:layout_marginEnd="@dimen/medium_padding"
-            android:layout_marginBottom="@dimen/medium_padding" />
+            android:layout_marginBottom="@dimen/medium_padding"
+            android:textColor="@color/primaryFontColor"
+            android:textSize="@dimen/main_font_size" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

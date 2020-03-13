@@ -57,6 +57,8 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/content_margin"
         android:layout_marginTop="@dimen/content_margin"
+        android:textColor="@color/primaryFontColor"
+        android:textSize="@dimen/main_font_size"
         android:layout_marginEnd="@dimen/content_margin"
         android:text="@string/history"
         app:layout_constraintEnd_toEndOf="parent"

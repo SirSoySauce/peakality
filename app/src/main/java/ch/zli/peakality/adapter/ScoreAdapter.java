@@ -7,14 +7,16 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.List;
 
 import ch.zli.peakality.R;
 import ch.zli.peakality.model.ScoreModel;
 
 public class ScoreAdapter extends ArrayAdapter<ScoreModel>{
 
-    private ArrayList<ScoreModel> dataSet;
+    private List<ScoreModel> dataSet;
     private Context mContext;
 
     // View lookup cache
@@ -24,21 +26,21 @@ public class ScoreAdapter extends ArrayAdapter<ScoreModel>{
         TextView scoreValueView;
     }
 
-    public ScoreAdapter(ArrayList<ScoreModel> data, Context context) {
+    public ScoreAdapter(List<ScoreModel> data, Context context) {
         super(context, R.layout.list_score, data);
         this.dataSet = data;
         this.mContext = context;
 
     }
 
+    private int lastPosition = -1;
+
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         // Get the data item for this position
-        ScoreModel score = getItem(position);
+        ScoreModel score = dataSet.get(position);
         // Check if an existing view is being reused, otherwise inflate the view
         ViewHolder viewHolder; // view lookup cache stored in tag
-
-        final View result;
 
         if (convertView == null) {
 
@@ -49,17 +51,16 @@ public class ScoreAdapter extends ArrayAdapter<ScoreModel>{
             viewHolder.cityView = convertView.findViewById(R.id.tvCity);
             viewHolder.scoreValueView = convertView.findViewById(R.id.tvScore);
 
-            result=convertView;
-
             convertView.setTag(viewHolder);
         } else {
             viewHolder = (ViewHolder) convertView.getTag();
-            result=convertView;
         }
+        lastPosition = position;
 
-        viewHolder.dateView.setText(score.getScore().getDate().toString());
-        viewHolder.cityView.setText(score.getScore().getCityName());
-        viewHolder.scoreValueView.setText(String.valueOf(score.getCalculatedScore()));
+        viewHolder.dateView.setText(score.getDate());
+        viewHolder.cityView.setText(score.getCity());
+        viewHolder.scoreValueView.setText(score.getScore());
+        viewHolder.
         // Return the completed view to render on screen
         return convertView;
     }
