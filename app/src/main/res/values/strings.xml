@@ -26,4 +26,5 @@
     <string name="permission_rationale">Location permission is needed for core functionality</string>
 
     <string name="error_weather_api">Can\'t connect to weather API.</string>
+    <string name="error_pressure_sensor">Device doesn\'t have a pressure sensor.</string>
 </resources>
