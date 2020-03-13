@@ -34,6 +34,7 @@ import ch.zli.peakality.database.AppDatabase;
 import ch.zli.peakality.database.entity.Score;
 import ch.zli.peakality.domain.bo.ScoreBO;
 import ch.zli.peakality.service.DatabaseService;
+import ch.zli.peakality.service.MapperService;
 import ch.zli.peakality.service.OpenWeatherMapService;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.schedulers.Schedulers;
@@ -110,17 +111,7 @@ public class StartActivity extends Activity {
      */
     private void writeScoreToDatabase(ScoreBO scoreBO) {
         // Map ScoreBO to score db entry object.
-        Score score = Score.builder()
-                .airPressure(scoreBO.getAirPressure())
-                .altitude(scoreBO.getAltitude())
-                .cityName(currentWeather.getCityName())
-                .date(scoreBO.getDate())
-                .latitude(scoreBO.getLatitude())
-                .longitude(scoreBO.getLongitude())
-                .temperature(scoreBO.getTemperature())
-                .weather(scoreBO.getWeather())
-                .windSpeed(scoreBO.getWindSpeed())
-                .build();
+        Score score = MapperService.mapScoreBOtoScore(scoreBO, currentWeather);
 
         // Insert score entry on io thread in database.
         databaseService.writeScoreToDatabase(score)
