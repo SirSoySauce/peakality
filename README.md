@@ -15,6 +15,8 @@ Always wanted to prove you're the most extreme person? Now you can!
 2. Wait until Android Studio has installed all your dependencies.
 3. Connect your Android device with enabled USB debugging.
 4. If everything is correct, your should now see the device in your toolbar.
+4. Open the [OpenWeatherMap](https://openweathermap.org/) and create an account to get an API key.
+5. Copy your API key to the `OpenWeatherMapService` class.
 5. Push the "run" button to compile and install the app on your device.
 
 ## Built With
