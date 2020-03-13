@@ -17,17 +17,9 @@ import lombok.Setter;
 
 public class ScoreAdapter extends ArrayAdapter<ScoreModel>{
 
-    @Setter
-    private List<ScoreModel> dataSet;
-    private Context mContext;
-
     public ScoreAdapter(List<ScoreModel> data, Context context) {
         super(context, R.layout.list_score, data);
-        this.dataSet = data;
-        this.mContext = context;
     }
-
-    private int lastPosition = -1;
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {

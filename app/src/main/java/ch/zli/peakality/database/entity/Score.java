@@ -33,6 +33,8 @@ public class Score {
 
     private String weather;
 
+    private int weatherId;
+
     private double windSpeed;
 
     private float airPressure;
