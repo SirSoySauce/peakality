@@ -36,6 +36,7 @@ import ch.zli.peakality.domain.bo.ScoreBO;
 import ch.zli.peakality.service.DatabaseService;
 import ch.zli.peakality.service.MapperService;
 import ch.zli.peakality.service.OpenWeatherMapService;
+import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.schedulers.Schedulers;
 
@@ -190,9 +191,15 @@ public class StartActivity extends Activity {
                 try {
                     compositeDisposable.add(openWeatherMapService.getCurrentWeather(location.getLatitude(), location.getLongitude())
                             .subscribeOn(Schedulers.io())
-                            .subscribe(weatherData -> currentWeather = weatherData, error -> showSnackbar(R.string.error_weather_api)));
+                            .observeOn(AndroidSchedulers.mainThread())
+                            .subscribe(weatherData -> currentWeather = weatherData, e -> {
+                                Log.e(this.getClass().getSimpleName(), e.getMessage());
+                                generateScoreButton.setEnabled(false);
+                                showSnackbar(R.string.error_weather_api);
+                            }));
                 } catch (APIException e) {
                     Log.e(this.getClass().getSimpleName(), e.getMessage());
+                    generateScoreButton.setEnabled(false);
                     showSnackbar(R.string.error_weather_api);
                 }
             }
