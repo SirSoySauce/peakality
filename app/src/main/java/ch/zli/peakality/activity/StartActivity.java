@@ -133,7 +133,6 @@ public class StartActivity extends Activity {
     private ScoreBO buildScore() {
         fusedLocationClient.getLastLocation()
                 .addOnSuccessListener(locationOnSuccessListener());
-        // TODO: Fully build Score object
         return ScoreBO.builder()
                 .airPressure(pressure)
                 .latitude(location.getLatitude())
