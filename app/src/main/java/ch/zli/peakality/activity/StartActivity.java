@@ -152,7 +152,9 @@ public class StartActivity extends Activity {
         if (checkPermissions()) {
             fusedLocationClient.getLastLocation().addOnSuccessListener(locationOnSuccessListener());
         }
-        sensorManager.registerListener(sensorEventListener, pressureSensor, SensorManager.SENSOR_DELAY_NORMAL);
+        if (pressureSensor != null) {
+            sensorManager.registerListener(sensorEventListener, pressureSensor, SensorManager.SENSOR_DELAY_NORMAL);
+        }
     }
 
     @Override
