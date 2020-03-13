@@ -15,9 +15,9 @@ public class MapperService {
                 .altitude(score.getAltitude())
                 .date(score.getDate())
                 .windSpeed(score.getWindSpeed())
-                .temperature(score.getWindSpeed())
+                .temperature(score.getTemperature())
                 .weather(score.getWeather())
-                .weatherId(score.getScoreId())
+                .weatherId(score.getWeatherId())
                 .build();
     }
 
@@ -31,6 +31,7 @@ public class MapperService {
                 .longitude(scoreBO.getLongitude())
                 .temperature(scoreBO.getTemperature())
                 .weather(scoreBO.getWeather())
+                .weatherId(scoreBO.getWeatherId())
                 .windSpeed(scoreBO.getWindSpeed())
                 .build();
     }
