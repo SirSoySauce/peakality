@@ -17,7 +17,7 @@ public class ScoreCalculatorService {
         weatherValueMap = initializeWeatherMap();
     }
 
-    public HashMap<String, Integer> initializeWeatherMap() {
+    private HashMap<String, Integer> initializeWeatherMap() {
         HashMap<String, Integer> hashMap = new HashMap<>();
         hashMap.put("^2\\d\\d$", 800); // Thunderstorm
         hashMap.put("^3\\d\\d$", 400); // Drizzle
@@ -58,7 +58,7 @@ public class ScoreCalculatorService {
      * @return
      *  The calculated score.
      */
-    public int calculateSingleScoreValue(double actualValue, int[] referenceValues) {
+    private int calculateSingleScoreValue(double actualValue, int[] referenceValues) {
         double score;
         double maxValue = referenceValues[0];
         double normValue = referenceValues[1];
@@ -72,7 +72,7 @@ public class ScoreCalculatorService {
         return (int)(score * 1000);
     }
 
-    public int calculateWeatherScoreValue(String weatherId) {
+    private int calculateWeatherScoreValue(String weatherId) {
         for (Map.Entry<String, Integer> entry : weatherValueMap.entrySet()) {
             if(weatherId.matches(entry.getKey())) {
                 return entry.getValue();

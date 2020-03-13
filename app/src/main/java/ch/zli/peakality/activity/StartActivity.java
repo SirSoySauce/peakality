@@ -212,8 +212,10 @@ public class StartActivity extends Activity {
     /**
      * Shows a snack bar to notify the user that the application is missing the location permission.
      *
-     * @param mainTextStringId The id for the string resource for the Snackbar text.
-     * @param listener         The listener associated with the Snackbar action.
+     * @param mainTextStringId
+     *  The id for the string resource for the Snackbar text.
+     * @param listener
+     *  The listener associated with the Snackbar action.
      */
     private void showSnackbar(final int mainTextStringId, View.OnClickListener listener) {
         // Create a snack bar.
