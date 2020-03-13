@@ -79,11 +79,16 @@ public class StartActivity extends Activity {
 
         if (checkPermissions()) {
             generateScoreButton.setOnClickListener(v -> {
-                ScoreBO score = buildScore();
-                writeScoreToDatabase(score);
-                Intent intent = new Intent(StartActivity.this, ScoreActivity.class);
-                intent.putExtra(SCORE_EXTRA_NAME, score);
-                startActivity(intent);
+                if (location == null) {
+                    generateScoreButton.setEnabled(false);
+                    showSnackbar(R.string.error_no_location);
+                } else {
+                    ScoreBO score = buildScore();
+                    writeScoreToDatabase(score);
+                    Intent intent = new Intent(StartActivity.this, ScoreActivity.class);
+                    intent.putExtra(SCORE_EXTRA_NAME, score);
+                    startActivity(intent);
+                }
             });
         } else {
             generateScoreButton.setEnabled(false);
@@ -150,7 +155,8 @@ public class StartActivity extends Activity {
     protected void onResume() {
         super.onResume();
         if (checkPermissions()) {
-            fusedLocationClient.getLastLocation().addOnSuccessListener(locationOnSuccessListener());
+            fusedLocationClient.getLastLocation()
+                    .addOnSuccessListener(locationOnSuccessListener());
         }
         if (pressureSensor != null) {
             sensorManager.registerListener(sensorEventListener, pressureSensor, SensorManager.SENSOR_DELAY_NORMAL);
