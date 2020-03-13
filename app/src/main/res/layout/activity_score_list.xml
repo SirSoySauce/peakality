@@ -19,9 +19,13 @@
         app:title="@string/app_name"
         app:titleTextColor="@color/primaryFontColor" />
 
-            <ListView
-                android:id="@+id/lvScores"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+    <ListView
+        android:id="@+id/lvScores"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/toolbar" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
