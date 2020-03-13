@@ -42,7 +42,9 @@ public class ScoreAdapter extends ArrayAdapter<ScoreModel> {
         this.mContext = context;
 
         this.databaseService = new DatabaseService(Room.databaseBuilder(mContext.getApplicationContext(),
-                AppDatabase.class, "peakalityDb").build());
+                AppDatabase.class, "peakalityDb")
+                .fallbackToDestructiveMigration()
+                .build());
     }
 
     @Override

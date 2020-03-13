@@ -67,7 +67,9 @@ public class StartActivity extends Activity {
         setContentView(R.layout.activity_start);
         generateScoreButton = findViewById(R.id.bGenerateScore);
         databaseService = new DatabaseService(Room.databaseBuilder(getApplicationContext(),
-                AppDatabase.class, "peakalityDb").build());
+                AppDatabase.class, "peakalityDb")
+                .fallbackToDestructiveMigration()
+                .build());
 
         // Request the location permission if they aren't already set.
         if (!checkPermissions()) {

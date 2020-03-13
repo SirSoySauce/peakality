@@ -37,7 +37,11 @@ public class ScoreListActivity extends AppCompatActivity {
 
         ListView scoreList = findViewById(R.id.lvScores);
         databaseService = new DatabaseService(Room.databaseBuilder(getApplicationContext(),
-                AppDatabase.class, "peakalityDb").build());
+                AppDatabase.class, "peakalityDb")
+                .fallbackToDestructiveMigration()
+                .build());
+        scoreAdapter = new ScoreAdapter(scoreModels, this);
+        scoreList.setAdapter(scoreAdapter);
         compositeDisposable.add(databaseService.getAllScoresFromDatabase()
                 .subscribeOn(Schedulers.io())
                 .subscribe(scores -> {
@@ -51,8 +55,6 @@ public class ScoreListActivity extends AppCompatActivity {
                             .collect(Collectors.toList());
                     scoreAdapter.addAll(scoreModels);
                 }));
-        scoreAdapter = new ScoreAdapter(scoreModels, this);
-        scoreList.setAdapter(scoreAdapter);
     }
 
     private ScoreBO mapToScoreBO(Score score) {
