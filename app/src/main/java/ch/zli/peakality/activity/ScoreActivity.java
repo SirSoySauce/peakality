@@ -60,7 +60,7 @@ public class ScoreActivity extends Activity {
         shareScoreButton.setOnClickListener(v -> {
             Intent sharingIntent = new Intent(Intent.ACTION_SEND);
             sharingIntent.setType("text/plain");
-            sharingIntent.putExtra(Intent.EXTRA_TEXT, "My score is: " + calculatedScore);
+            sharingIntent.putExtra(Intent.EXTRA_TEXT, "Can you beat my Peakality score of " + calculatedScore + "?");
             startActivity(Intent.createChooser(sharingIntent, "Share using"));
         });
         updateMeasuredValues();
