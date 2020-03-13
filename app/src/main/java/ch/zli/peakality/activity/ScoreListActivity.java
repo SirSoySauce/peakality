@@ -64,6 +64,7 @@ public class ScoreListActivity extends AppCompatActivity {
                 .longitude(score.getLongitude())
                 .temperature(score.getTemperature())
                 .weather(score.getWeather())
+                .weatherId(score.getWeatherId())
                 .windSpeed(score.getWindSpeed())
                 .build();
     }

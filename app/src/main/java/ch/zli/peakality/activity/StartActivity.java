@@ -119,6 +119,7 @@ public class StartActivity extends Activity {
                 .longitude(scoreBO.getLongitude())
                 .temperature(scoreBO.getTemperature())
                 .weather(scoreBO.getWeather())
+                .weatherId(scoreBO.getWeatherId())
                 .windSpeed(scoreBO.getWindSpeed())
                 .build();
 
