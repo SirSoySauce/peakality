@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Peakality</string>
     <string name="get_score">Get Score!</string>
-    <string name="front_text">Peakality is the greatest app! Show us that you\'re the realest. Find yourself in extreme situations. Get the highest score and prove your friends that you\'re the realest among them.</string>
+    <string name="front_text">Peakality is the greatest app! Find yourself in extreme situations. Get the highest score and prove your friends that you\'re the realest among them.</string>
     <string name="data_not_available">Data not available</string>
 
     <string name="position_label">Your Position</string>
