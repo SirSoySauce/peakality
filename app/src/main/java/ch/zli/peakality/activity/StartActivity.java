@@ -14,6 +14,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import androidx.core.app.ActivityCompat;
 import androidx.room.Room;
@@ -52,6 +53,7 @@ public class StartActivity extends Activity {
     private float pressure;
     private Location location;
     private CurrentWeather currentWeather;
+    private TextView historyLabel;
     // Set a code to identify the app.
     private static final int REQUEST_PERMISSIONS_REQUEST_CODE = 9556165;
 
@@ -82,6 +84,12 @@ public class StartActivity extends Activity {
         } else {
             generateScoreButton.setEnabled(false);
         }
+
+        historyLabel = findViewById(R.id.tvHistory);
+        historyLabel.setOnClickListener(v -> {
+            Intent intent = new Intent(StartActivity.this, ScoreListActivity.class);
+            startActivity(intent);
+        });
 
         sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
         pressureSensor = sensorManager.getDefaultSensor(Sensor.TYPE_PRESSURE);
@@ -240,14 +248,11 @@ public class StartActivity extends Activity {
         // request previously, but didn't check the "Don't ask again" checkbox.
         if (shouldProvideRationale) {
             showSnackbar(R.string.permission_rationale,
-                    new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            // Request permission
-                            ActivityCompat.requestPermissions(StartActivity.this,
-                                    new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
-                                    REQUEST_PERMISSIONS_REQUEST_CODE);
-                        }
+                    view -> {
+                        // Request permission
+                        ActivityCompat.requestPermissions(StartActivity.this,
+                                new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
+                                REQUEST_PERMISSIONS_REQUEST_CODE);
                     });
         } else {
             // Request permission. It's possible this can be auto answered if device policy
