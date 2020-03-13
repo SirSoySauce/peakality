@@ -17,7 +17,7 @@ import ch.zli.peakality.database.entity.Score;
 import ch.zli.peakality.domain.bo.ScoreBO;
 import ch.zli.peakality.model.ScoreModel;
 import ch.zli.peakality.service.DatabaseService;
-import ch.zli.peakality.service.ScoreCalculator;
+import ch.zli.peakality.service.ScoreCalculatorService;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.schedulers.Schedulers;
 
@@ -25,7 +25,7 @@ public class ScoreListActivity extends AppCompatActivity {
 
     private DatabaseService databaseService;
     private ScoreAdapter scoreAdapter;
-    private ScoreCalculator scoreCalculator = new ScoreCalculator();
+    private ScoreCalculatorService scoreCalculator = new ScoreCalculatorService();
     private List<ScoreModel> scoreModels = new ArrayList<>();
 
     private CompositeDisposable compositeDisposable = new CompositeDisposable();
