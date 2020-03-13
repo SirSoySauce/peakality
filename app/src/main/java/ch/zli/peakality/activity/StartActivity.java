@@ -97,7 +97,10 @@ public class StartActivity extends Activity {
 
         sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
         pressureSensor = sensorManager.getDefaultSensor(Sensor.TYPE_PRESSURE);
-        // TODO: Handle case if mobile has no sensor
+        if (pressureSensor == null) {
+            generateScoreButton.setEnabled(false);
+            showSnackbar(R.string.error_pressure_sensor);
+        }
         sensorEventListener = pressureSensorEventListener();
 
         // Check if the app is allowed to access the location.
@@ -130,7 +133,6 @@ public class StartActivity extends Activity {
     private ScoreBO buildScore() {
         fusedLocationClient.getLastLocation()
                 .addOnSuccessListener(locationOnSuccessListener());
-        // TODO: Fully build Score object
         return ScoreBO.builder()
                 .airPressure(pressure)
                 .latitude(location.getLatitude())
@@ -220,10 +222,8 @@ public class StartActivity extends Activity {
     /**
      * Shows a snack bar to notify the user that the application is missing the location permission.
      *
-     * @param mainTextStringId
-     *  The id for the string resource for the Snackbar text.
-     * @param listener
-     *  The listener associated with the Snackbar action.
+     * @param mainTextStringId The id for the string resource for the Snackbar text.
+     * @param listener         The listener associated with the Snackbar action.
      */
     private void showSnackbar(final int mainTextStringId, View.OnClickListener listener) {
         // Create a snack bar.
